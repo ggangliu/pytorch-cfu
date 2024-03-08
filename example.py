@@ -1,5 +1,5 @@
 import torch
-from utils.custom_device_mode import foo_module, enable_foo_device
+from utils.custom_device_mode import cfu_module, enable_cfu_device
 
 # This file contains an example of how to create a custom device extension
 # in PyTorch, through the dispatcher.
@@ -88,7 +88,7 @@ def test(x, y):
 # Option 1: Use torch.register_privateuse1_backend("foo"), which will allow
 # "foo" as a device string to work seamlessly with pytorch's API's.
 # You may need a more recent nightly of PyTorch for this.
-torch.utils.rename_privateuse1_backend('foo')
+torch.utils.rename_privateuse1_backend('cfu')
 
 # Show that in general, passing in a custom device string will fail.
 try:
@@ -99,27 +99,27 @@ except RuntimeError as e:
 
 # Show that in general, passing in a custom device string will fail.
 try:
-    x = torch.ones(4, 4, device='foo:2')
-    exit("Error: the foo device only has two valid indices: foo:0 and foo:1")
+    x = torch.ones(4, 4, device='cfu:2')
+    exit("Error: the cfu device only has two valid indices: cfu:0 and cfu:1")
 except RuntimeError as e:
-    print("(Correctly) unable to create tensor on device='foo:2'")
+    print("(Correctly) unable to create tensor on device='cfu:2'")
 
-print("Creating x on device 'foo:0'")
-x1 = torch.ones(4, 4, device='foo:0')
-print("Creating y on device 'foo:0'")
-y1 = torch.ones(4, 4, device='foo:0')
+print("Creating x on device 'cfu:0'")
+x1 = torch.ones(4, 4, device='cfu:0')
+print("Creating y on device 'cfu:0'")
+y1 = torch.ones(4, 4, device='cfu:0')
 
 test(x1, y1)
 
 
 # Option 2: Directly expose a custom device object
 # You can pass an optional index arg, specifying which device index to use.
-foo_device1 = foo_module.custom_device(1)
+cfu_device1 = cfu_module.custom_device(1)
 
-print("Creating x on device 'foo:1'")
-x2 = torch.ones(4, 4, device=foo_device1)
-print("Creating y on device 'foo:1'")
-y2 = torch.ones(4, 4, device=foo_device1)
+print("Creating x on device 'cfu:1'")
+x2 = torch.ones(4, 4, device=cfu_device1)
+print("Creating y on device 'cfu:1'")
+y2 = torch.ones(4, 4, device=cfu_device1)
 
 # Option 3: Enable a TorchFunctionMode object in user land,
 # that will convert `device="foo"` calls into our custom device objects automatically.
@@ -128,7 +128,7 @@ y2 = torch.ones(4, 4, device=foo_device1)
 # (a) Torch Function Modes have been around for longer, and the API in Option 1
 #     is only available on a more recent nightly.
 # (b) This is a cool example of how powerful torch_function and torch_dispatch modes can be!
-# holder = enable_foo_device()
+# holder = enable_cfu_device()
 # del _holder
 
 test(x2, y2)

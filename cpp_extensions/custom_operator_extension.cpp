@@ -275,10 +275,14 @@ c10::Device get_custom_device(int idx) {
   return c10::Device(c10::DeviceType::PrivateUse1, idx);
 }
 
+void test_ops() {
+  std::cout << "Custom test_ops() called!" << std::endl;
+}
 // Here, we're exposing a custom device object that corresponds to our custom backend.
 // We do this using pybind: exposing an "extension_name.custom_device()" function in python,
 // that's implemented in C++.
 // The implementation in this file maps directly to the `PrivateUse1` device type.
 PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
     m.def("custom_device", &get_custom_device, "get custom device object");
+    m.def("test_ops", &test_ops, "test custom operator");
 }

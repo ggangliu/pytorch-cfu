@@ -8,7 +8,7 @@ with open(os.path.join(cwd, "README.md"), encoding="utf-8") as f:
 
 setup(
     name='torch_cfu',
-    version="0.0.3",
+    version="0.0.7",
     description="A Simple Pytorch version for CFU",
     author='ggangliu',
     author_email='ggang.liu@gmail.com',
@@ -23,7 +23,7 @@ setup(
     ext_modules=[
         CppExtension(
             name='torch_cfu',
-            sources=['cpp_extensions/open_registration_extension.cpp'],
+            sources=['cpp_extensions/custom_operator_extension.cpp'],
             extra_compile_args=['-g']),
     ],
     cmdclass={'build_ext': BuildExtension}
