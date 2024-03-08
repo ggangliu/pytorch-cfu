@@ -38,7 +38,7 @@ False
 Custom allocator's delete() called!
 ```
 
-# How to add new custom kernels in C++
+## How to add new custom kernels in C++
 
 1. Writing custom kernels in C++, and registering them to the PyTorch dispatcher
 2. Providing a user API for your custom device, so users can invoke the custom code using `torch.foo(..., device="custom_device")`

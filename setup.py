@@ -8,7 +8,7 @@ with open(os.path.join(cwd, "README.md"), encoding="utf-8") as f:
 
 setup(
     name='torch_cfu',
-    version="0.0.2",
+    version="0.0.3",
     description="A Simple Pytorch version for CFU",
     author='ggangliu',
     author_email='ggang.liu@gmail.com',
