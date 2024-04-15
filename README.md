@@ -1,10 +1,11 @@
 # torch-cfu
 
 This project is for adding custom function unit to accelerate AI algorithm. 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/googlecolab/colabtools/blob/main/notebooks/colab-github-demo.ipynb)
 
 ## How to install
 
-You can install it by pip for the latest version. And assume that you have installed torch before.
+You can install it by pip for the latest version. And assume that you have installed torch before. 
 
 ``` bash
 pip install torch-cfu
